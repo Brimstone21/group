@@ -29,8 +29,7 @@ function animation2 () {
         . . . . . f f f f f f . . . . . 
         . . . . . f f . . f f . . . . . 
         `, SpriteKind.Player)
-    controller.moveSprite(mySprite)
-    up = animation.createAnimation(ActionKind.up, 500)
+    up = animation.createAnimation(ActionKind.up, 250)
     up.addAnimationFrame(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f e e e e f f . . . . 
@@ -104,7 +103,7 @@ function animation2 () {
         . . . . . . . . . f f f . . . . 
         `)
     animation.attachAnimation(mySprite, up)
-    right = animation.createAnimation(ActionKind.right, 1000)
+    right = animation.createAnimation(ActionKind.right, 250)
     right.addAnimationFrame(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . f f f f f f . . . . 
@@ -178,7 +177,7 @@ function animation2 () {
         . . . . . . . f f f . . . . . . 
         `)
     animation.attachAnimation(mySprite, right)
-    left = animation.createAnimation(ActionKind.left, 1000)
+    left = animation.createAnimation(ActionKind.left, 250)
     left.addAnimationFrame(img`
         . . . . . . . . . . . . . . . . 
         . . . . f f f f f f . . . . . . 
@@ -252,7 +251,7 @@ function animation2 () {
         . . . . . . f f f . . . . . . . 
         `)
     animation.attachAnimation(mySprite, left)
-    down = animation.createAnimation(ActionKind.down, 1000)
+    down = animation.createAnimation(ActionKind.down, 250)
     down.addAnimationFrame(img`
         . . . . . . f f f f . . . . . . 
         . . . . f f f 2 2 f f f . . . . 
@@ -326,10 +325,37 @@ function animation2 () {
         . . . . . . . . . f f f . . . . 
         `)
     animation.attachAnimation(mySprite, down)
+    controller.moveSprite(mySprite, 50, 50)
 }
+controller.down.onEvent(ControllerButtonEvent.Released, function () {
+    pause(200)
+    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.setAction(mySprite, ActionKind.left)
+})
+controller.right.onEvent(ControllerButtonEvent.Released, function () {
+    pause(200)
+    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
+})
+controller.left.onEvent(ControllerButtonEvent.Released, function () {
+    pause(200)
+    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.setAction(mySprite, ActionKind.right)
+})
+controller.up.onEvent(ControllerButtonEvent.Released, function () {
+    pause(200)
+    animation.stopAnimation(animation.AnimationTypes.All, mySprite)
+})
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    animation.setAction(mySprite, ActionKind.down)
+})
 let down: animation.Animation = null
 let left: animation.Animation = null
 let right: animation.Animation = null
 let up: animation.Animation = null
 let mySprite: Sprite = null
+scene.setBackgroundColor(1)
 animation2()
