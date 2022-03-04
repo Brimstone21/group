@@ -5,7 +5,7 @@ enum ActionKind {
     up
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    animation.setAction(mySprite, ActionKind.Walking)
+    animation.setAction(mySprite, ActionKind.up)
 })
 function animation2 () {
     mySprite = sprites.create(img`
