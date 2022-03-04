@@ -373,6 +373,7 @@ function IsItTrue () {
             ........................
             ........................
             `, SpriteKind.Enemy)
+        mySprite.follow(_1stCharacter, 25)
         mySprite.setPosition(80, 10)
     } else if (info.life() == 2) {
         mySprite2 = sprites.create(img`
@@ -393,6 +394,7 @@ function IsItTrue () {
             . . . f f f f f f f c c c c c . 
             . . . . . . . . . . . . c c c c 
             `, SpriteKind.Enemy)
+        mySprite2.follow(_1stCharacter, 25)
         mySprite2.setPosition(80, 10)
         _1stCharacter.setPosition(80, 80)
     } else if (info.life() == 1) {
@@ -413,7 +415,8 @@ function IsItTrue () {
             ....fccc111fbdbbccdcc.....fbbf..
             ........ccccfcdbbcc........fff..
             .............fffff..............
-            `, SpriteKind.Player)
+            `, SpriteKind.Enemy)
+        mySprite3.follow(_1stCharacter, 25)
         mySprite3.setPosition(80, 10)
         _1stCharacter.setPosition(80, 80)
     }
@@ -436,7 +439,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     mySprite2.destroy()
     info.changeLifeBy(-1)
     IsItTrue()
-    pause(50000)
     mySprite3.destroy()
     info.changeLifeBy(-1)
     IsItTrue()
